@@ -1,0 +1,11 @@
+hotoMetaData <- read_excel("C:/Users/richa/Downloads/photoMetaData.csv")
+View(photoMetaData)
+pm <- read.csv("C://Users//richa//Downloads//photoMetaData.csv")
+n <- nrow(pm)
+trainFlag <- (runif(n) > 0.5)
+y <- as.numeric(pm$category == "outdoor-day")
+X <- matrix(NA, ncol=3, nrow=n)
+for (j in 1:n) {
+img <-readJPGE(paste0("C://Users//richa//Downloads//columbiaImages.zip//columbiaImages",pm$name[j]))
+X[j,] <- apply(img,3,median)
+print(sprintf("%03d / %03d", j, n))
