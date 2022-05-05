@@ -1,0 +1,17 @@
+set.seed(1)
+n = 1000
+nt = 560
+rep = 100
+error_SVM = dim(rep)
+error_RF = dim(rep)
+neval = n - nt
+for (i in 1:rep) {
+# SVM Analysis(for the training data and prediction value)
+x = subset(trainingset,
+y = trainingset$Default
+xPrime = subset(testingset,
+yPrime = testingset$Default
+svm_model1 = svm(x, y)
+pred_SVM = predict(svm_model1, xPrime)
+tableSVM = table(yPrime, pred_SVM)
+error_SVM[i] = (neval - sum(diag(tableSVM))) / neval
